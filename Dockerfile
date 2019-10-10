@@ -1,0 +1,2 @@
+ARG CHROMIUM_VERSION
+FROM microbox/chromium-headless:$CHROMIUM_VERSION

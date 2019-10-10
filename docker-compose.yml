@@ -1,0 +1,36 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+    pdfapi:
+        image: microbox/node-url-to-pdf-api
+        container_name: pdfapi
+        restart: unless-stopped
+        tty: true
+        ports:
+            - '8404:80'
+        networks:
+            - app-network
+    websocketserver:
+        image: 'centrifugo/centrifugo:v2.2'
+        container_name: websocketserver
+        restart: unless-stopped
+        tty: true
+        environment:
+            - CENTRIFUGO_SECRET=irabu_DEVServer
+            - CENTRIFUGO_ADMIN_PASSWORD=irabu_DEVServer
+            - CENTRIFUGO_ADMIN_SECRET=irabu_DEVServer
+        ports:
+            - '8000:8000'
+        volumes:
+            - './centrifugo/conf/centrifugo.json:/centrifugo/config.json'
+        networks:
+            - app-network
+networks:
+    app-network:
+        driver: bridge
+volumes:
+    esdata:
+        driver: local
