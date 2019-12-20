@@ -1,0 +1,32 @@
+{
+  "admin" : true,
+  "debug": true,
+  "secret": "_irabu_",
+  "admin_password": "irabu",
+  "admin_secret": "irabu",
+  "api_key": "fsOM45es",
+  "namespaces": [
+    {
+      "name": "chat",
+      "anonymous": false,
+      "publish": true,
+      "join_leave": true,
+      "presence": true,
+      "presence_stats": true,
+      "history_size": 10,
+      "history_lifetime": 60,
+      "history_recover": true
+    },
+    {
+      "name": "public",
+      "anonymous": true,
+      "publish": true,
+      "join_leave": true,
+      "presence": true,
+      "presence_stats": true,
+      "history_size": 10,
+      "history_lifetime": 60,
+      "history_recover": true
+    }
+  ]
+}

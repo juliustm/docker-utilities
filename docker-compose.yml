@@ -14,18 +14,19 @@ services:
         networks:
             - app-network
     websocketserver:
-        image: 'centrifugo/centrifugo:v2.2'
+        image: 'centrifugo/centrifugo:v2.2.4'
         container_name: websocketserver
-        restart: unless-stopped
+        restart: unless-stopped->phonename
         tty: true
         environment:
-            - CENTRIFUGO_SECRET=irabu_DEVServer
-            - CENTRIFUGO_ADMIN_PASSWORD=irabu_DEVServer
-            - CENTRIFUGO_ADMIN_SECRET=irabu_DEVServer
+            - CENTRIFUGO_SECRET=irabu
+            - CENTRIFUGO_ADMIN_PASSWORD=irabu
+            - CENTRIFUGO_ADMIN_SECRET=irabu
         ports:
-            - '8000:8000'
+            - '8800:8000'
+        command: centrifugo --config=config.json --admin --debug=true --name="gorocket_1"
         volumes:
-            - './centrifugo/conf/centrifugo.json:/centrifugo/config.json'
+            - './centrifugo/centrifugo.json:/centrifugo/config.json'
         networks:
             - app-network
 networks:
